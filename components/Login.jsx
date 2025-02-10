@@ -10,11 +10,13 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [isRegister, setIsRegister] = useState(false)
     const [authenticating, setAuthenticating] = useState(false)
+    const [error, setError] = useState(false);
 
     const { signup, login } = useAuth()
 
     async function handleSubmit() {
         if (!email || !password || password.length < 6) {
+            setError(true);
             return
         }
         setAuthenticating(true)
@@ -45,10 +47,12 @@ export default function Login() {
             <input value={password} onChange={(e) => {
                 setPassword(e.target.value)
             }} className='w-full max-w-[400px] mx-auto px-3 duration-200 hover:border-indigo-600 focus:border-indigo-600 py-2 sm:py-3 border border-solid border-indigo-400 rounded-full outline-none' placeholder='Password' type='password' />
+             <div className="text-red-600"> {error ? "Password must be 8 characters." : ""}</div>
             <div className='max-w-[400px] w-full mx-auto'>
                 <Button clickHandler={handleSubmit} text={authenticating ? 'Submitting' : "Submit"} full />
             </div>
             <p className='text-center'>{isRegister ? 'Already have an account? ' : 'Don\'t have an account? '}<button onClick={() => setIsRegister(!isRegister)} className='text-indigo-600'>{isRegister ? 'Sign in' : 'Sign up'}</button></p>
+           
         </div>
     )
 }
