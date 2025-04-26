@@ -12,6 +12,8 @@ export default function Login() {
     const [authenticating, setAuthenticating] = useState(false)
     const [passError, setPassError] = useState(false);
     const [emailError, setEmailError] = useState(false);
+    const [submitError, setSubmitError] = useState('');
+
 
     const { signup, login } = useAuth()
 
@@ -72,7 +74,12 @@ export default function Login() {
             text={authenticating ? 'Submitting...' : 'Submit'} 
             disabled={authenticating}
             full 
-/>
+            />
+            {submitError && (
+              <div className="text-red-600 text-center max-w-[400px] mx-auto">
+                {submitError}
+              </div>
+            )}
             </div>
             
            
