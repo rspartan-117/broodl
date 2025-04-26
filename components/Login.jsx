@@ -46,7 +46,7 @@ export default function Login() {
               } else if (err.code === 'auth/email-already-in-use') {
                 setSubmitError('Email is already registered. Please log in.');
               } else {
-                setSubmitError('Something went wrong. Please try again.');
+                setSubmitError('No Account found. Please Signup first.');
               }
             } finally {
               setAuthenticating(false);
